@@ -1,17 +1,28 @@
+#[warn(special_module_name)]
+
+
 
 pub mod todo_Operations{
+
+
+
     pub fn command(mut string: String) -> String {
         // if the command is todo exit then we will return 0
         //* trim the command
         let commands:Vec<&str> = string.trim().split(" ").collect() ;
+        println!("{:?}", commands) ;
         let code = String::new() ;
         for x in 0..commands.len() {
+            println!("{}",x == 0 && commands[x] != "todo") ;
             if x == 0 && commands[x] != "todo" {
+                println!("hey i got over here") ;
                 return String::from("10") ;
+            }else if x == 0 {
             }else{
                 match commands[x] {
                     "add" =>{
                         //calling the add command function
+                        println!("hoii") ;
                         return commands_check::add_command(commands[1..commands.len()].to_vec()) ;
                     },
                     "delete" => {
@@ -34,6 +45,7 @@ pub mod todo_Operations{
                         return String::from("5") ;
                     }
                     _ => {
+                        println!("haha") ;
                         return String::from("10") ; // invalid command
                     }
                 }
@@ -42,8 +54,14 @@ pub mod todo_Operations{
         code
     }
 
+
+
+
+
+
     pub mod commands_check{
         pub fn add_command(vector: Vec<&str>) -> String{
+            println!(" The add command vector was {:?}", vector) ;
             let mut code = String::new() ;
             if vector[0] == "add" && vector.len() == 4 {
                 code.push_str("1") ;
@@ -54,11 +72,14 @@ pub mod todo_Operations{
                         code.push_str(",") ;
                     }
                 }
+                println!("The code was here {:?}", code) ;
                 return code ;
             }
+            println!("I'm here bro") ;
             return String::from("10") ; // invalid command
         }
         pub fn delete_command(vector: Vec<&str>)-> String{
+            println!("{:?}", vector) ;
             if vector.len() != 2 {
                 return String::from("10") ;
             }
